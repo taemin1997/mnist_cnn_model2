@@ -28,11 +28,11 @@ if mode == "이미지":
     if uploaded_file:
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         image_bgr = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-        st.image(cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB), caption="원본 이미지", use_container_width=True)
+        st.image(cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB), caption="원본 이미지", use_column_width=True)
 
         st.subheader("탐지 결과")
         result_bgr = detect_image(image_bgr)
-        st.image(cv2.cvtColor(result_bgr, cv2.COLOR_BGR2RGB), caption="탐지된 이미지", use_container_width=True)
+        st.image(cv2.cvtColor(result_bgr, cv2.COLOR_BGR2RGB), caption="탐지된 이미지", use_column_width=True)
 
 # 웹캠 탐지
 elif mode == "웹캠":
@@ -80,12 +80,9 @@ elif mode == "동영상":
             if not ret:
                 break
             result_bgr = detect_image(frame)
-            stframe.image(cv2.cvtColor(result_bgr, cv2.COLOR_BGR2RGB), channels="RGB", use_container_width=True)
+            stframe.image(cv2.cvtColor(result_bgr, cv2.COLOR_BGR2RGB), channels="RGB", use_column_width=True)
             # 잠시 대기 - 너무 빠른 루프 방지
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
         cap.release()
-
-
-
